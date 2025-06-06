@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub struct Distance {
     walking: u64,
     driving: Option<u64>,

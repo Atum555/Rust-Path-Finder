@@ -47,15 +47,15 @@ fn main() {
 
     // Insert Edges
     for distance in distances {
-        let from_id = graph.get_node_id(&distance.0).expect(&format!(
+        let node_1_id = graph.get_node_id(&distance.0).expect(&format!(
             "Tried to connect nodes: '{}', '{}' but node '{}' does not exist",
             distance.0, distance.1, distance.0
         ));
-        let to_id = graph.get_node_id(&distance.1).expect(&format!(
+        let node_2_id = graph.get_node_id(&distance.1).expect(&format!(
             "Tried to connect nodes: '{}', '{}' but node '{}' does not exist",
             distance.0, distance.1, distance.1
         ));
-        match graph.add_edge(from_id, to_id, distance.2) {
+        match graph.add_bidirectional_edge(node_1_id, node_2_id, distance.2) {
             Err(GraphError::NodeNotFound(node_id)) => {
                 panic!("Node does not exist: {:?}", node_id);
             }
@@ -71,5 +71,9 @@ fn main() {
             }
             Ok(_) => {}
         }
+    }
+
+    for (node_id, node) in graph.nodes() {
+        println!("{}: {:?}", node_id, node);
     }
 }

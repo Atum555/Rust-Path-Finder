@@ -75,7 +75,7 @@ impl<N, E> Graph<N, E> {
             None => {}
         }
 
-        if to_node.outgoing.contains_key(&from_id) {
+        if to_node.incoming.contains_key(&from_id) {
             panic!("Nodes out of sync")
         }
 
@@ -98,6 +98,34 @@ impl<N, E> Graph<N, E> {
 
         // Return inserted edge ID
         Ok(self.current_edge_id)
+    }
+}
+
+impl<N, E> Graph<N, E>
+where
+    E: Copy,
+{
+    pub fn add_bidirectional_edge(
+        &mut self,
+        node_id_1: NodeId,
+        node_id_2: NodeId,
+        data: E,
+    ) -> Result<(EdgeId, EdgeId), GraphError> {
+        // Add each edge
+        let edge_id_1 = self.add_edge(node_id_1, node_id_2, data)?;
+        let edge_id_2 = self.add_edge(node_id_2, node_id_1, data)?;
+
+        // Set reverses
+        self.edges
+            .get_mut(&edge_id_1)
+            .unwrap()
+            .set_reverse(Some(edge_id_2));
+        self.edges
+            .get_mut(&edge_id_2)
+            .unwrap()
+            .set_reverse(Some(edge_id_1));
+
+        Ok((edge_id_1, edge_id_2))
     }
 }
 
