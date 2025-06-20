@@ -21,8 +21,8 @@ impl<N, E> Graph<N, E> {
         Self {
             nodes: HashMap::new(),
             edges: HashMap::new(),
-            current_node_id: NodeId(0),
-            current_edge_id: EdgeId(0),
+            current_node_id: NodeId::default(),
+            current_edge_id: EdgeId::default(),
         }
     }
 
@@ -75,6 +75,7 @@ impl<N, E> Graph<N, E> {
             None => {}
         }
 
+        // Sanity check
         if to_node.incoming.contains_key(&from_id) {
             panic!("Nodes out of sync")
         }
@@ -119,11 +120,11 @@ where
         self.edges
             .get_mut(&edge_id_1)
             .unwrap()
-            .set_reverse(Some(edge_id_2));
+            .set_reverse(edge_id_2);
         self.edges
             .get_mut(&edge_id_2)
             .unwrap()
-            .set_reverse(Some(edge_id_1));
+            .set_reverse(edge_id_1);
 
         Ok((edge_id_1, edge_id_2))
     }

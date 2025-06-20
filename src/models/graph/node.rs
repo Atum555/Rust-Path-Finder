@@ -7,9 +7,7 @@ pub struct Node<T> {
     // Internal Node data
     data: T,
 
-    // Connections - Map:
-    // Key -> Connecting Node ID
-    // Value -> Edge ID
+    // Connections
     pub incoming: HashMap<NodeId, EdgeId>,
     pub outgoing: HashMap<NodeId, EdgeId>,
 }

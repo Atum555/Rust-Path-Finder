@@ -39,7 +39,11 @@ impl<T> Edge<T> {
         self.reverse
     }
 
-    pub fn set_reverse(&mut self, reverse: Option<EdgeId>) {
-        self.reverse = reverse;
+    pub fn set_reverse(&mut self, reverse: EdgeId) {
+        self.reverse = Some(reverse);
+    }
+
+    pub fn clear_reverse(&mut self) {
+        self.reverse = None;
     }
 }

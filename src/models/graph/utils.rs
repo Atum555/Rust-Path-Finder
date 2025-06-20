@@ -10,7 +10,7 @@ pub enum GraphError {
     },
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Default)]
 pub struct NodeId(pub u64);
 
 impl Display for NodeId {
@@ -19,7 +19,7 @@ impl Display for NodeId {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Default)]
 pub struct EdgeId(pub u64);
 
 impl Display for EdgeId {
