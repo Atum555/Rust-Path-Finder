@@ -19,7 +19,7 @@ pub enum Field {
     Parking,
     Location,
     Driving,
-    Walking
+    Walking,
 }
 
 impl std::fmt::Display for Field {
@@ -29,6 +29,8 @@ impl std::fmt::Display for Field {
             Field::Code => "Code",
             Field::Parking => "Parking",
             Field::Location => "Location",
+            Field::Driving => "Driving",
+            Field::Walking => "Walking",
         };
         write!(f, "{}", field_name)
     }

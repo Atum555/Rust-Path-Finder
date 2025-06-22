@@ -1,4 +1,4 @@
-use crate::models::{EdgeId, NodeId};
+use crate::{EdgeId, NodeId};
 
 #[derive(Debug)]
 pub struct Edge<T> {

@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 
-use crate::models::{Distance, Edge, EdgeId, GraphError, Location, Node, NodeId};
+use crate::GraphError;
+use crate::{Edge, EdgeId};
+use crate::{Node, NodeId};
 
 pub struct Graph<N, E> {
     // Node list stored as a hash map
@@ -127,23 +129,5 @@ where
             .set_reverse(edge_id_1);
 
         Ok((edge_id_1, edge_id_2))
-    }
-}
-
-impl Graph<Location, Distance> {
-    pub fn get_node_id(&self, identifier: &str) -> Option<NodeId> {
-        for node in &self.nodes {
-            if node.1.data().id() == identifier {
-                return Some(*node.0);
-            }
-        }
-
-        for node in &self.nodes {
-            if node.1.data().code() == identifier {
-                return Some(*node.0);
-            }
-        }
-
-        None
     }
 }

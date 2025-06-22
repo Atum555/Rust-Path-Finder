@@ -6,6 +6,7 @@ version = 4
 name = "Rust-Path-Finder"
 version = "0.1.0"
 dependencies = [
+ "sdw_graph",
  "thiserror",
 ]
 
@@ -26,6 +27,10 @@ checksum = "1885c039570dc00dcb4ff087a89e185fd56bae234ddc7f056a945bf36467248d"
 dependencies = [
  "proc-macro2",
 ]
+
+[[package]]
+name = "sdw_graph"
+version = "0.1.0"
 
 [[package]]
 name = "syn"

@@ -1,11 +1,12 @@
-mod models;
-mod parsers;
-
-use parsers::*;
+use sdw_graph::{Graph, GraphError};
 use std::env;
 use std::fs::File;
 
-use crate::models::{Distance, Graph, GraphError, Location};
+mod models;
+mod parsers;
+
+use crate::models::{Distance, GraphExt, Location};
+use crate::parsers::*;
 
 fn main() {
     // Parse arguments
@@ -30,8 +31,8 @@ fn main() {
     });
 
     // Parse data files
-    let locations = locations_parser::parse_file(&locations_file).expect("Error parsing locations");
-    let distances = distances_parser::parse_file(&distances_file).expect("Error parsing distances");
+    let locations = parse_locations_file(&locations_file).expect("Error parsing locations");
+    let distances = parse_distances_file(&distances_file).expect("Error parsing distances");
 
     // Close files
     drop(locations_file);
@@ -74,6 +75,6 @@ fn main() {
     }
 
     for (node_id, node) in graph.nodes() {
-        println!("{}: {:?}", node_id, node);
+        println!("{}: {:#?}", node_id, node);
     }
 }

@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::models::{EdgeId, NodeId};
+use crate::{EdgeId, NodeId};
 
 #[derive(Debug)]
 pub struct Node<T> {
